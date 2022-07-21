@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   if (result.error) {
     res
       .status(400)
-      .send(' SORRY, BAD REQUEST 400 ' + result.error.details[0].message);
+      .send(' SORRY, BAD REQUEST 400 xoxo' + result.error.details[0].message);
     return;
   }
 
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   if (user) {
     res
       .status(400)
-      .send('SORRY, BAD REQUEST 400. This email has already been used');
+      .send('SORRY, BAD REQUEST 400 xoxo. This email has already been used');
     return;
   }
 
@@ -39,6 +39,7 @@ router.post('/', async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    isAdmin: req.body.isAdmin,
   });
 
   const salt = await bcrypt.genSalt(10);
@@ -58,7 +59,7 @@ router.post('/', async (req, res) => {
 
   res
     .header('x-auth-token', token)
-    .send(_.pick(user, ['_id', 'name', 'email']));
+    .send(_.pick(user, ['_id', 'name', 'email', 'isAdmin']));
 });
 
 module.exports = router;
