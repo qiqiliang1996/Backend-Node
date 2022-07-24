@@ -1,7 +1,9 @@
 const config = require('config');
 const express = require('express');
+var cors = require('cors');
 
 const app = express();
+app.use(cors());
 require('./startup/winstonLogging')(); //error first
 require('./startup/routes')(app);
 require('./startup/db')();

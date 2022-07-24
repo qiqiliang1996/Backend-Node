@@ -3,7 +3,7 @@ const { Genre } = require('../../models/genre');
 const { User } = require('../../models/user');
 let server;
 
-describe('check authorization middleware', () => {
+describe('check x-auth-token middleware', () => {
   beforeEach(() => {
     server = require('../../index');
   });

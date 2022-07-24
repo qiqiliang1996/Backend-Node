@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   if (user) {
     res
       .status(400)
-      .send('SORRY, BAD REQUEST 400 xoxo. This email has already been used');
+      .send('SORRY, BAD REQUEST 400. This email has already been used');
     return;
   }
 
@@ -59,6 +59,7 @@ router.post('/', async (req, res) => {
 
   res
     .header('x-auth-token', token)
+    .header('access-control-expose-headers', 'x-auth-token')
     .send(_.pick(user, ['_id', 'name', 'email', 'isAdmin']));
 });
 
