@@ -1,3 +1,4 @@
+const config = require('config');
 function checkAdminMiddleware(req, res, next) {
   if (!config.get('requiresAuth')) return next();
   if (!req.user.isAdmin)
